@@ -1,0 +1,107 @@
+{
+  "scopeName": "source.basic",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#identifiers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.basic",
+          "match": "'.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.basic",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.basic",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.basic",
+          "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.float.basic",
+          "match": "\\b\\d+\\.\\d+\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.basic",
+          "match": "\\b(LET|IF|THEN|ELSE|FOR|TO|STEP|NEXT|WHILE|WEND|DO|LOOP|UNTIL|SUB|END|FUNCTION|RETURN|PRINT|INPUT|READ|DATA|RESTORE|DIM)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.basic",
+          "match": "\\b(ABS|SIN|COS|TAN|SQRT|LOG|EXP|LEN|MID|LEFT|RIGHT|VAL|STR)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.basic",
+          "match": "\\b(\\+|-|\\*|/|\\^|MOD)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.basic",
+          "match": "\\b(=|<>|<|<=|>|>=)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.basic",
+          "match": "\\b(AND|OR|NOT)\\b"
+        },
+        {
+          "name": "keyword.operator.assignment.basic",
+          "match": "="
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.other.basic",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+} 

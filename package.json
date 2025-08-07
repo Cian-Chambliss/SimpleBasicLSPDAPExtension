@@ -1,0 +1,144 @@
+{
+  "name": "basic-language-support",
+  "displayName": "BASIC Language Support",
+  "description": "BASIC language support with LSP and DAP for VSCode",
+  "version": "1.0.0",
+  "publisher": "basic-interpreter",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers"
+  ],
+  "keywords": [
+    "basic",
+    "language",
+    "interpreter",
+    "debugger"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:basic",
+    "onCommand:basic.startDebugging"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "basic",
+        "aliases": [
+          "BASIC",
+          "basic"
+        ],
+        "extensions": [
+          ".bas",
+          ".basic"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "basic",
+        "scopeName": "source.basic",
+        "path": "./syntaxes/basic.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "BASIC Language",
+      "properties": {
+        "basic.interpreterPath": {
+          "type": "string",
+          "default": "c:/dev/dap/build/Debug/basic_interpreter.exe",
+          "description": "Path to the BASIC interpreter executable"
+        },
+        "basic.debugPort": {
+          "type": "number",
+          "default": 4711,
+          "description": "Port for DAP debugging"
+        }
+      }
+    },
+    "debuggers": [
+      {
+        "type": "basic",
+        "label": "BASIC Debugger",
+        "program": "c:/dev/dap/build/Debug/basic_interpreter.exe",
+        "args": ["--dap-only"],
+        "runtimeArgs": [],
+        "configurationAttributes": {
+          "launch": {
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to the BASIC program to debug"
+              },
+              "programPath": {
+                "type": "string",
+                "description": "Path to BASIC file"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Arguments to pass to the program"
+              },
+              "cwd": {
+                "type": "string",
+                "description": "Working directory for the program"
+              },
+              "trace": {
+                "type": "string",
+                "enum": ["off", "messages", "verbose"],
+                "default": "off",
+                "description": "DAP trace level: off, messages, or verbose"
+              }
+            },
+            "required": ["program"]
+          }
+        },
+        "initialConfigurations": [
+          {
+            "name": "Debug BASIC Program",
+            "type": "basic",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}"
+          }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "basic.startDebugging",
+        "title": "Start BASIC Debugging",
+        "category": "BASIC"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "basic.startDebugging",
+          "when": "resourceExtname == .bas || resourceExtname == .basic"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "@types/vscode": "^1.102.0",
+    "typescript": "^4.0.0",
+    "vsce": "^1.80.0",
+    "vscode": "^1.1.37"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^7.0.0",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  }
+}
