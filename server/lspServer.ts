@@ -271,8 +271,8 @@ connection.onHover((params: TextDocumentPositionParams): Hover => {
     return {
         contents: [
             {
-                language: 'basic',
-                value: 'BASIC Language'
+                language: 'simplebasic',
+                value: 'BASIC Simple Language'
             },
             'This is a BASIC program. You can use keywords like LET, IF, FOR, etc.'
         ]

@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('BASIC Language Support is now active! Starting up...');
 
     // Get the path to the interpreter
-    const config = vscode.workspace.getConfiguration('basic');
+    const config = vscode.workspace.getConfiguration('simplebasic');
     const interpreterPath = config.get<string>('interpreterPath', 'c:/dev/dap/build/Debug/basic_interpreter.exe');
     const debugPort = config.get<number>('debugPort', 4711);
 
@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('Setting up options');    
     const clientOptions = {
         documentSelector: [
-            { scheme: 'file', language: 'basic' },
+            { scheme: 'file', language: 'simplebasic' },
             { scheme: 'file', pattern: '**/*.bas' },
             { scheme: 'file', pattern: '**/*.basic' }
         ],
@@ -56,17 +56,17 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('Setting up Debug Adapter Protocol');
     // Set up DAP
     const factory = new BasicDebugAdapterDescriptorFactory(interpreterPath, debugPort);
-    context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('basic', factory));
+    context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('simplebasic', factory));
 
     // Register commands
-    let disposable = vscode.commands.registerCommand('basic.startDebugging', () => {
+    let disposable = vscode.commands.registerCommand('simplebasic.startDebugging', () => {
         const editor = vscode.window.activeTextEditor;
-        if (editor && (editor.document.languageId === 'basic' || 
+        if (editor && (editor.document.languageId === 'simplebasic' || 
                       editor.document.fileName.endsWith('.bas') || 
                       editor.document.fileName.endsWith('.basic'))) {
             vscode.debug.startDebugging(vscode.workspace.workspaceFolders?.[0], {
                 name: 'Debug BASIC Program',
-                type: 'basic',
+                type: 'simplebasic',
                 request: 'launch',
                 program: editor.document.fileName,
                 cwd: vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '',
@@ -82,8 +82,8 @@ export function activate(context: vscode.ExtensionContext) {
     // Register configuration change listener
     context.subscriptions.push(
         vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('basic')) {
-                vscode.window.showInformationMessage('BASIC configuration changed. Please restart the extension.');
+            if (e.affectsConfiguration('simplebasic')) {
+                vscode.window.showInformationMessage('BASIC Simple configuration changed. Please restart the extension.');
             }
         })
     );

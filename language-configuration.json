@@ -1,5 +1,5 @@
 {
-  "scopeName": "source.basic",
+  "scopeName": "source.simplebasic",
   "patterns": [
     {
       "include": "#comments"
@@ -27,7 +27,7 @@
     "comments": {
       "patterns": [
         {
-          "name": "comment.line.basic",
+          "name": "comment.line.simplebasic",
           "match": "'.*$"
         }
       ]
@@ -35,12 +35,12 @@
     "strings": {
       "patterns": [
         {
-          "name": "string.quoted.double.basic",
+          "name": "string.quoted.double.simplebasic",
           "begin": "\"",
           "end": "\"",
           "patterns": [
             {
-              "name": "constant.character.escape.basic",
+              "name": "constant.character.escape.simplebasic",
               "match": "\\\\."
             }
           ]
@@ -50,11 +50,11 @@
     "numbers": {
       "patterns": [
         {
-          "name": "constant.numeric.integer.basic",
+          "name": "constant.numeric.integer.simplebasic",
           "match": "\\b\\d+\\b"
         },
         {
-          "name": "constant.numeric.float.basic",
+          "name": "constant.numeric.float.simplebasic",
           "match": "\\b\\d+\\.\\d+\\b"
         }
       ]
@@ -62,7 +62,7 @@
     "keywords": {
       "patterns": [
         {
-          "name": "keyword.control.basic",
+          "name": "keyword.control.simplebasic",
           "match": "\\b(LET|IF|THEN|ELSE|FOR|TO|STEP|NEXT|WHILE|WEND|DO|LOOP|UNTIL|SUB|END|FUNCTION|RETURN|PRINT|INPUT|READ|DATA|RESTORE|DIM)\\b"
         }
       ]
@@ -70,7 +70,7 @@
     "functions": {
       "patterns": [
         {
-          "name": "support.function.builtin.basic",
+          "name": "support.function.builtin.simplebasic",
           "match": "\\b(ABS|SIN|COS|TAN|SQRT|LOG|EXP|LEN|MID|LEFT|RIGHT|VAL|STR)\\b"
         }
       ]
@@ -78,19 +78,19 @@
     "operators": {
       "patterns": [
         {
-          "name": "keyword.operator.arithmetic.basic",
+          "name": "keyword.operator.arithmetic.simplebasic",
           "match": "\\b(\\+|-|\\*|/|\\^|MOD)\\b"
         },
         {
-          "name": "keyword.operator.comparison.basic",
+          "name": "keyword.operator.comparison.simplebasic",
           "match": "\\b(=|<>|<|<=|>|>=)\\b"
         },
         {
-          "name": "keyword.operator.logical.basic",
+          "name": "keyword.operator.logical.simplebasic",
           "match": "\\b(AND|OR|NOT)\\b"
         },
         {
-          "name": "keyword.operator.assignment.basic",
+          "name": "keyword.operator.assignment.simplebasic",
           "match": "="
         }
       ]
@@ -98,7 +98,7 @@
     "identifiers": {
       "patterns": [
         {
-          "name": "variable.other.basic",
+          "name": "variable.other.simplebasic",
           "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
         }
       ]

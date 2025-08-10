@@ -1,9 +1,9 @@
 {
-  "name": "basic-language-support",
-  "displayName": "BASIC Language Support",
-  "description": "BASIC language support with LSP and DAP for VSCode",
+  "name": "simplebasic-language-support",
+  "displayName": "Basic Language Support",
+  "description": "Simple Basic language support with LSP and DAP for VSCode",
   "version": "1.0.0",
-  "publisher": "basic-interpreter",
+  "publisher": "simplebasic-interpreter",
   "engines": {
     "vscode": "^1.102.0"
   },
@@ -13,19 +13,20 @@
   ],
   "keywords": [
     "basic",
+    "simplebasic",
     "language",
     "interpreter",
     "debugger"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
-    "onLanguage:basic",
-    "onCommand:basic.startDebugging"
+    "onLanguage:simplebasic",
+    "onCommand:simplebasic.startDebugging"
   ],
   "contributes": {
     "languages": [
       {
-        "id": "basic",
+        "id": "simplebasic",
         "aliases": [
           "BASIC",
           "basic"
@@ -39,20 +40,25 @@
     ],
     "grammars": [
       {
+        "language": "simplebasic",
+        "scopeName": "source.simplebasic",
+        "path": "./syntaxes/simplebasic.tmLanguage.json"
+      },
+      {
         "language": "basic",
-        "scopeName": "source.basic",
-        "path": "./syntaxes/basic.tmLanguage.json"
+        "scopeName": "source.simplebasic",
+        "path": "./syntaxes/simplebasic.tmLanguage.json"
       }
     ],
     "configuration": {
-      "title": "BASIC Language",
+      "title": "simplebasic Language",
       "properties": {
-        "basic.interpreterPath": {
+        "simplebasic.interpreterPath": {
           "type": "string",
-          "default": "c:/dev/dap/build/Debug/basic_interpreter.exe",
-          "description": "Path to the BASIC interpreter executable"
+          "default": "c:/dev/dap/build/Debug/simplebasic_interpreter.exe",
+          "description": "Path to the simplebasic interpreter executable"
         },
-        "basic.debugPort": {
+        "simplebasic.debugPort": {
           "type": "number",
           "default": 4711,
           "description": "Port for DAP debugging"
@@ -61,9 +67,10 @@
     },
     "debuggers": [
       {
-        "type": "basic",
-        "label": "BASIC Debugger",
-        "program": "c:/dev/dap/build/Debug/basic_interpreter.exe",
+        "type": "simplebasic",
+        "languages": ["simplebasic"],
+        "label": "simplebasic Debugger",
+        "program": "c:/dev/dap/build/Debug/simplebasic_interpreter.exe",
         "args": ["--dap-only"],
         "runtimeArgs": [],
         "configurationAttributes": {
@@ -71,11 +78,11 @@
             "properties": {
               "program": {
                 "type": "string",
-                "description": "Path to the BASIC program to debug"
+                "description": "Path to the simplebasic program to debug"
               },
               "programPath": {
                 "type": "string",
-                "description": "Path to BASIC file"
+                "description": "Path to simplebasic file"
               },
               "args": {
                 "type": "array",
@@ -100,8 +107,8 @@
         },
         "initialConfigurations": [
           {
-            "name": "Debug BASIC Program",
-            "type": "basic",
+            "name": "Debug Basic Program",
+            "type": "simplebasic",
             "request": "launch",
             "program": "${file}",
             "cwd": "${workspaceFolder}"
@@ -111,15 +118,15 @@
     ],
     "commands": [
       {
-        "command": "basic.startDebugging",
+        "command": "simplebasic.startDebugging",
         "title": "Start BASIC Debugging",
-        "category": "BASIC"
+        "category": "basic"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "basic.startDebugging",
+          "command": "simplebasic.startDebugging",
           "when": "resourceExtname == .bas || resourceExtname == .basic"
         }
       ]
