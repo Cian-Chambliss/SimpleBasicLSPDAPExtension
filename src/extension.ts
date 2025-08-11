@@ -97,7 +97,10 @@ export function deactivate(): Thenable<void> | undefined {
 }
 
 class BasicDebugAdapterDescriptorFactory implements DebugAdapterDescriptorFactory {
-    constructor(private interpreterPath: string, private debugPort: number) {}
+    constructor(private interpreterPath: string, private debugPort: number) {
+        this.interpreterPath = interpreterPath; 
+        this.debugPort = debugPort;
+    }
 
     createDebugAdapterDescriptor(session: vscode.DebugSession, executable: DebugAdapterExecutable | undefined): vscode.ProviderResult<vscode.DebugAdapterDescriptor> {
         // For now, we'll use a server-based approach
